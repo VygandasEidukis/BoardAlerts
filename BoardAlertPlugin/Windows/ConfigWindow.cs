@@ -1,3 +1,5 @@
+using BoardAlertPlugin.Models;
+using BoardAlertPlugin.Universalis.Models;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Interface.Windowing;
@@ -5,8 +7,6 @@ using Dalamud.Logging;
 using ImGuiNET;
 using Lumina.Excel;
 using Lumina.Excel.GeneratedSheets;
-using BoardAlertPlugin.Models;
-using BoardAlertPlugin.Universalis.Models;
 using System;
 using System.Linq;
 using System.Numerics;
@@ -79,7 +79,11 @@ public class ConfigWindow : Window, IDisposable
                 var id = Configuration.SelectedProducts[row].Id.ToString();
                 if (ImGui.InputText("", ref id, 32))
                 {
-                    Configuration.SelectedProducts[row].Id = uint.Parse(id);
+                    if (uint.TryParse(id, out var idnum))
+                    {
+                        Configuration.SelectedProducts[row].Id = uint.Parse(id);
+                        Configuration.Save();
+                    }
                 }
                 ImGui.PopID();
 
@@ -88,7 +92,11 @@ public class ConfigWindow : Window, IDisposable
                 var price = Configuration.SelectedProducts[row].MaxPrice.ToString();
                 if (ImGui.InputText("", ref price, 32))
                 {
-                    Configuration.SelectedProducts[row].MaxPrice = uint.Parse(price);
+                    if (uint.TryParse(price, out var priceNum))
+                    {
+                        Configuration.SelectedProducts[row].MaxPrice = priceNum;
+                        Configuration.Save();
+                    }
                 }
                 ImGui.PopID();
 
