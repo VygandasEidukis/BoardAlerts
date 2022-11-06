@@ -194,7 +194,7 @@ public class ConfigWindow : Window, IDisposable
                 {
                     var entryF = new XivChatEntry()
                     {
-                        Message = $"Found item '{GetItems().GetRow(listing.ItemId).Name}' listed for {product.PricePerUnit}, x{product.Quantity} in {GetWorlds().GetRow(listing.WorldId).Name}",
+                        Message = $"Found item '{GetItems().GetRow(listing.ItemId).Name}' listed for {item.PricePerUnit}, x{item.Quantity} in {GetWorlds().GetRow(listing.WorldId).Name}|{listing.WorldId}",
                         Name = SeString.Empty,
                         Type = XivChatType.Echo,
                     };
