@@ -22,9 +22,9 @@ public class ConfigWindow : Window, IDisposable
     private bool isRunning;
 
     public ConfigWindow(Plugin plugin) : base(
-        "A Wonderful Configuration Window", ImGuiWindowFlags.AlwaysVerticalScrollbar | ImGuiWindowFlags.AlwaysAutoResize)
+        "A Wonderful Configuration Window", ImGuiWindowFlags.AlwaysVerticalScrollbar)
     {
-        Size = new Vector2(500, 400);
+        Size = new Vector2(800, 400);
         SizeCondition = ImGuiCond.Always;
 
         Configuration = plugin.Configuration;
@@ -60,9 +60,9 @@ public class ConfigWindow : Window, IDisposable
     private void DrawCreateItemToSelect()
     {
         var removeId = -1;
-        if (ImGui.BeginTable("table1", 4, ImGuiTableFlags.NoKeepColumnsVisible | ImGuiTableFlags.SizingMask | ImGuiTableFlags.SizingFixedFit))
+        if (ImGui.BeginTable("table1", 5, ImGuiTableFlags.SizingMask | ImGuiTableFlags.Resizable))
         {
-            var columnCount = 4;
+            var columnCount = 5;
 
             if (Configuration.SelectedProducts.Count == 0)
             {
@@ -121,6 +121,16 @@ public class ConfigWindow : Window, IDisposable
                     removeId = row;
                 }
                 ImGui.PopID();
+
+                ImGui.TableSetColumnIndex(4);
+                ImGui.PushID(row * columnCount + 4);
+                bool hq = Configuration.SelectedProducts[row].HQ;
+                if (ImGui.Checkbox("HQ", ref hq))
+                {
+                    Configuration.SelectedProducts[row].HQ = hq;
+                    Configuration.Save();
+                }
+                ImGui.PopID();
             }
             ImGui.EndTable();
         }
@@ -177,8 +187,13 @@ public class ConfigWindow : Window, IDisposable
                 return;
             }
 
-            var correctListing = listing.Listings.Where(x => x.PricePerUnit <= configuredItem.MaxPrice).ToList();
-            if (correctListing.Count > 0)
+            var correctListing = listing.Listings.Where(x => x.PricePerUnit <= configuredItem.MaxPrice);
+            if (configuredItem.HQ)
+            {
+                correctListing.Where(x => x.Hq == configuredItem.HQ);
+            }
+
+            if (correctListing.Count() > 0)
             {
                 if (Configuration.AllowedWorlds.Length > 0 && !Configuration.AllowedWorlds.Contains(listing.WorldId))
                 {
@@ -189,7 +204,7 @@ public class ConfigWindow : Window, IDisposable
                 {
                     var entryF = new XivChatEntry()
                     {
-                        Message = $"Found item '{GetItems().GetRow(listing.ItemId).Name}' listed for {item.PricePerUnit}, x{item.Quantity} in {GetWorlds().GetRow(listing.WorldId).Name}|{listing.WorldId}",
+                        Message = $"Found item '{GetItems().GetRow(listing.ItemId).Name}' listed for {item.PricePerUnit}, x{item.Quantity} in {GetWorlds().GetRow(listing.WorldId).Name}",
                         Name = SeString.Empty,
                         Type = XivChatType.Echo,
                     };
