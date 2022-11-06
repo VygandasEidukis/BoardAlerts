@@ -177,14 +177,9 @@ public class ConfigWindow : Window, IDisposable
                 return;
             }
 
-            if (listing.Listings.Count > 0)
+            var correctListing = listing.Listings.Where(x => x.PricePerUnit <= configuredItem.MaxPrice).ToList();
+            if (correctListing.Count > 0)
             {
-                var product = listing.Listings[0];
-                if (product.PricePerUnit > configuredItem.MaxPrice)
-                {
-                    return;
-                }
-
                 if (Configuration.AllowedWorlds.Length > 0 && !Configuration.AllowedWorlds.Contains(listing.WorldId))
                 {
                     return;
