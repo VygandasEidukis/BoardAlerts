@@ -38,16 +38,6 @@ public class ConfigWindow : Window, IDisposable
         DrawStartStopWebSocket();
         DrawWorldSelector();
         DrawCreateItemToSelect();
-
-        DrawWorldList();
-    }
-
-    private void DrawWorldList()
-    {
-        foreach (var world in GetWorlds())
-        {
-            ImGui.Text($"{world.RowId} | {world.Name}");
-        }
     }
 
     private void DrawStartStopWebSocket()
