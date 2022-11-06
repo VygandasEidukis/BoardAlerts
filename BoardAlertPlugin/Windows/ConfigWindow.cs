@@ -5,13 +5,13 @@ using Dalamud.Logging;
 using ImGuiNET;
 using Lumina.Excel;
 using Lumina.Excel.GeneratedSheets;
-using SamplePlugin.Models;
-using SamplePlugin.Universalis.Models;
+using BoardAlertPlugin.Models;
+using BoardAlertPlugin.Universalis.Models;
 using System;
 using System.Linq;
 using System.Numerics;
 
-namespace SamplePlugin.Windows;
+namespace BoardAlertPlugin.Windows;
 
 public class ConfigWindow : Window, IDisposable
 {

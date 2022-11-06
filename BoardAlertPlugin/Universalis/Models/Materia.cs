@@ -1,7 +1,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System.Text.Json.Serialization;
 
-namespace SamplePlugin.Universalis.Models;
+namespace BoardAlertPlugin.Universalis.Models;
 public class Materia
 {
     /// <summary>

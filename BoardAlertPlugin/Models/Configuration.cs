@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SamplePlugin.Models
+namespace BoardAlertPlugin.Models
 {
     [Serializable]
     public class Configuration : IPluginConfiguration

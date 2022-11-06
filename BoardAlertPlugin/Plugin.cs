@@ -1,15 +1,15 @@
+using BoardAlertPlugin.Models;
+using BoardAlertPlugin.Universalis;
+using BoardAlertPlugin.Windows;
 using Dalamud.Data;
 using Dalamud.Game.Command;
 using Dalamud.Game.Gui;
 using Dalamud.Interface.Windowing;
 using Dalamud.IoC;
 using Dalamud.Plugin;
-using SamplePlugin.Models;
-using SamplePlugin.Universalis;
-using SamplePlugin.Windows;
 using System.IO;
 
-namespace SamplePlugin
+namespace BoardAlertPlugin
 {
     public sealed class Plugin : IDalamudPlugin
     {

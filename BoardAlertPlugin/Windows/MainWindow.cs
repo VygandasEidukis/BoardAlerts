@@ -4,7 +4,7 @@ using ImGuiScene;
 using System;
 using System.Numerics;
 
-namespace SamplePlugin.Windows;
+namespace BoardAlertPlugin.Windows;
 
 public class MainWindow : Window, IDisposable
 {

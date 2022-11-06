@@ -1,6 +1,6 @@
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace SamplePlugin.Universalis.Models;
+namespace BoardAlertPlugin.Universalis.Models;
 internal class EventSubscription
 {
     [BsonElement("event")]

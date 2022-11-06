@@ -1,4 +1,4 @@
-namespace SamplePlugin.Models;
+namespace BoardAlertPlugin.Models;
 public class SelectedProduct
 {
     public uint Id { get; set; }

@@ -1,7 +1,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
 
-namespace SamplePlugin.Universalis.Models;
+namespace BoardAlertPlugin.Universalis.Models;
 public class ProductListing
 {
     [BsonElement("event")]

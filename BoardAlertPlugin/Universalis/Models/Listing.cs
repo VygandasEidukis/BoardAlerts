@@ -2,7 +2,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace SamplePlugin.Universalis.Models;
+namespace BoardAlertPlugin.Universalis.Models;
 public class Listing
 {
     /// <summary>

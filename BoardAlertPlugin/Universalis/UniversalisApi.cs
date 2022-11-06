@@ -1,7 +1,7 @@
 using Dalamud.Logging;
 using MongoDB.Bson.IO;
 using MongoDB.Bson.Serialization;
-using SamplePlugin.Universalis.Models;
+using BoardAlertPlugin.Universalis.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Websocket.Client;
 using Websocket.Client.Models;
 
-namespace SamplePlugin.Universalis;
+namespace BoardAlertPlugin.Universalis;
 public class UniversalisApi
 {
     private readonly WebsocketClient _websocketClient;
