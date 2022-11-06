@@ -143,6 +143,11 @@ public class ConfigWindow : Window, IDisposable
         return Plugin.Data.Excel.GetSheet<Item>();
     }
 
+    private static ExcelSheet<World>? GetWorlds()
+    {
+        return Plugin.Data.Excel.GetSheet<World>();
+    }
+
     private void DrawWorldSelector()
     {
         // can't ref a property, so use a local copy
@@ -189,7 +194,7 @@ public class ConfigWindow : Window, IDisposable
                 {
                     var entryF = new XivChatEntry()
                     {
-                        Message = $"Found item '{GetItems().GetRow(listing.ItemId).Name}' listed for {product.PricePerUnit}, x{product.Quantity}",
+                        Message = $"Found item '{GetItems().GetRow(listing.ItemId).Name}' listed for {product.PricePerUnit}, x{product.Quantity} in {GetWorlds().GetRow(listing.WorldId).Name}",
                         Name = SeString.Empty,
                         Type = XivChatType.Echo,
                     };

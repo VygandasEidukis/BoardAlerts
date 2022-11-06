@@ -49,17 +49,24 @@ public class UniversalisApi
 
     private void MessageReceivedEvent(ResponseMessage msg)
     {
-        var listings = ReadMarketListings(msg.Binary);
-
-        strings.Add(listings.ItemId.ToString());
-
-        if (strings.Count > 30)
+        try
         {
-            PluginLog.Information(string.Join(", ", strings));
-            strings.Clear();
-        }
+            var listings = ReadMarketListings(msg.Binary);
 
-        ListingAction?.Invoke(listings);
+            strings.Add(listings.ItemId.ToString());
+
+            if (strings.Count > 30)
+            {
+                PluginLog.Information(string.Join(", ", strings));
+                strings.Clear();
+            }
+
+            ListingAction?.Invoke(listings);
+        }
+        catch (Exception ex)
+        {
+            PluginLog.Error($"Failed to deserialize: {ex.Message} \n {ex.StackTrace}");
+        }
     }
 
     private void ReconnectionHappenedEvent(ReconnectionInfo info)
@@ -84,7 +91,14 @@ public class UniversalisApi
 
     public void StopListening()
     {
-        _websocketClient.Stop(System.Net.WebSockets.WebSocketCloseStatus.NormalClosure, "");
-        _websocketClient = null;
+        try
+        {
+            _websocketClient?.Stop(System.Net.WebSockets.WebSocketCloseStatus.NormalClosure, "");
+            _websocketClient = null;
+        }
+        catch (Exception ex)
+        {
+            PluginLog.Error($"Failed to stop: {ex.Message} \n {ex.StackTrace}");
+        }
     }
 }
