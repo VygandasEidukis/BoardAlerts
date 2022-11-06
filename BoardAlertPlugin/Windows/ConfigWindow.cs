@@ -38,6 +38,16 @@ public class ConfigWindow : Window, IDisposable
         DrawStartStopWebSocket();
         DrawWorldSelector();
         DrawCreateItemToSelect();
+
+        DrawWorldList();
+    }
+
+    private void DrawWorldList()
+    {
+        foreach (var world in GetWorlds())
+        {
+            ImGui.Text($"{world.RowId} | {world.Name}");
+        }
     }
 
     private void DrawStartStopWebSocket()
@@ -185,7 +195,7 @@ public class ConfigWindow : Window, IDisposable
                     return;
                 }
 
-                if (Configuration.AllowedWorlds.Length > 0 && Configuration.AllowedWorlds.Any(x => x == listing.WorldId))
+                if (Configuration.AllowedWorlds.Length > 0 && !Configuration.AllowedWorlds.Contains(listing.WorldId))
                 {
                     return;
                 }
