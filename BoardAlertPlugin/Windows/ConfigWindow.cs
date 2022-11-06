@@ -185,7 +185,7 @@ public class ConfigWindow : Window, IDisposable
                     return;
                 }
 
-                foreach (var item in listing.Listings)
+                foreach (var item in correctListing)
                 {
                     var entryF = new XivChatEntry()
                     {
