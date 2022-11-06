@@ -54,7 +54,6 @@ namespace SamplePlugin
             PluginInterface.UiBuilder.Draw += DrawUI;
             PluginInterface.UiBuilder.OpenConfigUi += DrawConfigUI;
             UniversalisApi = new UniversalisApi(configWindow.HandleListing);
-            UniversalisApi.StartListening();
         }
 
         public void Dispose()

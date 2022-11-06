@@ -45,6 +45,15 @@ public class ConfigWindow : Window, IDisposable
         if (ImGui.Button(isRunning ? "Stop" : "Start"))
         {
             isRunning = !isRunning;
+
+            if (isRunning)
+            {
+                CurrentPlugin.UniversalisApi.StartListening();
+            }
+            else
+            {
+                CurrentPlugin.UniversalisApi.StopListening();
+            }
         }
     }
 
