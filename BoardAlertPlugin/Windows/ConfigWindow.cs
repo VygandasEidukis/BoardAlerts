@@ -190,7 +190,7 @@ public class ConfigWindow : Window, IDisposable
             var correctListing = listing.Listings.Where(x => x.PricePerUnit <= configuredItem.MaxPrice);
             if (configuredItem.HQ)
             {
-                correctListing = correctListing.Where(x => x.Hq == configuredItem.HQ);
+                correctListing.Where(x => x.Hq == configuredItem.HQ);
             }
 
             if (correctListing.Count() > 0)
